@@ -5,18 +5,20 @@ import java.util.LinkedHashMap;
 import java.util.Set;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import java.time.LocalDateTime;
 
 @Path("/notes")
 public class NoteResource {
+    private Set<Note> notes = Collections.newSetFromMap(Collections.synchronizedMap(new LinkedHashMap<>()));
 
     @GET
     public Set<Note> list() {
-        Set<Note> notes = Collections.newSetFromMap(Collections.synchronizedMap(new LinkedHashMap<>()));
-
-        notes.add(new Note("Aguar as plantas", "Regar todas as plantas", LocalDateTime.now(), LocalDateTime.now()));
-
         return notes;
+    }
+
+    @POST
+    public void add(Note note) {
+        notes.add(note);
     }
 }
