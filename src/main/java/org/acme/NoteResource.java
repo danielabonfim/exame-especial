@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
+import javax.validation.Valid;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -18,7 +19,7 @@ public class NoteResource {
     }
 
     @POST
-    public void add(Note note) {
+    public void add(@Valid Note note) {
         notes.add(note);
     }
 }
