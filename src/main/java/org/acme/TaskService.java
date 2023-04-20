@@ -21,8 +21,7 @@ public class TaskService {
 
     public void delete(UUID identifier) {
         Task task = taskDAO.get(identifier);
-        System.out.println("Got ent");
-        System.out.println(task);
+
         taskDAO.delete(task);
     }
 

@@ -45,8 +45,6 @@ public class TaskResource {
     @DELETE
     @Path("{identifier}")
     public void delete(@PathParam("identifier") UUID identifier) {
-        System.out.println("DELETE!");
-        System.out.println(identifier);
         taskService.delete(identifier);
     }
 }
