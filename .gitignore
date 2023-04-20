@@ -1,3 +1,6 @@
+#Custom
+*.log
+
 #Maven
 target/
 pom.xml.tag
