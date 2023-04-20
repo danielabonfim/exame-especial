@@ -6,6 +6,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.Query;
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 @ApplicationScoped
 public class TaskDAO {
@@ -16,6 +17,7 @@ public class TaskDAO {
 
     }
 
+    @Transactional
     public void save(Task task) {
         if (task.getIdentifier() == null) {
             entityManager.persist(task);
@@ -42,12 +44,14 @@ public class TaskDAO {
         return entityManager.createQuery("SELECT task FROM Task task WHERE " + whereClause);
     }
 
+    @Transactional
     public List<Task> filterByStatus(TaskStatus taskStatus) {
         Query query = getQueryForStatus(taskStatus);
 
         return query.getResultList();
     }
 
+    @Transactional
     public List<Task> list() {
         return entityManager.createQuery("SELECT task FROM Task task").getResultList();
     }
