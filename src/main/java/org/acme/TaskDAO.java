@@ -1,6 +1,7 @@
 package org.acme;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -15,6 +16,16 @@ public class TaskDAO {
 
     public TaskDAO() {
 
+    }
+
+    @Transactional
+    public Task get(UUID identifier) {
+        return entityManager.find(Task.class, identifier);
+    }
+
+    @Transactional
+    public void delete(Task task) {
+        entityManager.remove(entityManager.contains(task) ? task : entityManager.merge(task));
     }
 
     @Transactional
