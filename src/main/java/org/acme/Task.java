@@ -1,11 +1,21 @@
 package org.acme;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Size;
 
+@Entity
 public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+
     @Size(min = 5, max = 20, message = "The task's title should have 5 characters at least and 20 at most")
     private String title;
 
@@ -20,13 +30,6 @@ public class Task {
 
     public Task() {
 
-    }
-
-    public Task(String title, String description, LocalDateTime startTime, LocalDateTime dueTime) {
-        this.title = title;
-        this.description = description;
-        this.startTime = startTime;
-        this.dueTime = dueTime;
     }
 
     public void setTitle(String title) {

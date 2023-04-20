@@ -1,9 +1,8 @@
 package org.acme;
 
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Set;
+import java.util.List;
 
+import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -11,15 +10,16 @@ import javax.ws.rs.Path;
 
 @Path("/tasks")
 public class TaskResource {
-    private Set<Task> tasks = Collections.newSetFromMap(Collections.synchronizedMap(new LinkedHashMap<>()));
+    @Inject
+    private TaskService taskService;
 
     @GET
-    public Set<Task> list() {
-        return tasks;
+    public List<Task> list() {
+        return taskService.filterByStatus(null);
     }
 
     @POST
     public void add(@Valid Task task) {
-        tasks.add(task);
+        taskService.createTask(task);
     }
 }
