@@ -1,6 +1,7 @@
 package org.acme;
 
 import java.util.List;
+import org.jboss.resteasy.reactive.RestQuery;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -14,8 +15,15 @@ public class TaskResource {
     private TaskService taskService;
 
     @GET
-    public List<Task> list() {
-        return taskService.filterByStatus(null);
+    public List<Task> list(@RestQuery String taskStatus) {
+        System.out.println("GET");
+        System.out.println(taskStatus);
+
+        if (taskStatus != null) {
+            return taskService.filterByStatus(TaskStatus.valueOf(taskStatus));
+        }
+
+        return taskService.listAll();
     }
 
     @POST

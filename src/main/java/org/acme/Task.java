@@ -28,6 +28,8 @@ public class Task {
     @FutureOrPresent(message = "The task's due time should not occur in the past")
     private LocalDateTime dueTime;
 
+    private boolean done;
+
     public Task() {
 
     }
@@ -62,5 +64,13 @@ public class Task {
 
     public LocalDateTime getDueTime() {
         return this.dueTime;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
+    public boolean isDone() {
+        return this.done;
     }
 }

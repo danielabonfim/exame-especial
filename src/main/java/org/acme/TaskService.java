@@ -4,26 +4,25 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import javax.persistence.Query;
 
 @ApplicationScoped
 public class TaskService {
     @Inject
-    EntityManager entityManager;
+    TaskDAO taskDAO;
 
     @Transactional
     public void createTask(Task task) {
-        entityManager.persist(task);
+        taskDAO.create(task);
     }
 
     @Transactional
-    public List<Task> filterByStatus(String status) {
-        Query query = entityManager.createQuery("SELECT task FROM Task task WHERE task.title = 'nota 1'");
+    public List<Task> listAll() {
+        return taskDAO.list();
+    }
 
-        List<Task> list = (List<Task>) query.getResultList();
-
-        return list;
+    @Transactional
+    public List<Task> filterByStatus(TaskStatus taskStatus) {
+        return taskDAO.filterByStatus(taskStatus);
     }
 }
