@@ -12,7 +12,7 @@ public class TaskService {
     TaskDAO taskDAO;
 
     @Transactional
-    public void saveTask(Task task) {
+    public void save(Task task) {
         taskDAO.save(task);
     }
 

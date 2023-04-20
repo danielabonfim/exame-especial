@@ -26,11 +26,11 @@ public class TaskResource {
 
     @POST
     public void add(@Valid Task task) {
-        taskService.saveTask(task);
+        taskService.save(task);
     }
 
     @PUT
     public void update(@Valid Task task) {
-        taskService.saveTask(task);
+        taskService.save(task);
     }
 }
