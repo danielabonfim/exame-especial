@@ -12,8 +12,8 @@ public class TaskService {
     TaskDAO taskDAO;
 
     @Transactional
-    public void createTask(Task task) {
-        taskDAO.create(task);
+    public void saveTask(Task task) {
+        taskDAO.save(task);
     }
 
     @Transactional

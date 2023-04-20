@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 
 @Path("/tasks")
@@ -25,6 +26,11 @@ public class TaskResource {
 
     @POST
     public void add(@Valid Task task) {
-        taskService.createTask(task);
+        taskService.saveTask(task);
+    }
+
+    @PUT
+    public void update(@Valid Task task) {
+        taskService.saveTask(task);
     }
 }

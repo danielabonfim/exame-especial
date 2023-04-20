@@ -16,8 +16,12 @@ public class TaskDAO {
 
     }
 
-    public void create(Task task) {
-        entityManager.persist(task);
+    public void save(Task task) {
+        if (task.getIdentifier() == null) {
+            entityManager.persist(task);
+        } else {
+            entityManager.merge(task);
+        }
     }
 
     private Query getQueryForStatus(TaskStatus taskStatus) {
