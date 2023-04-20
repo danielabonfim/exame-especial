@@ -11,8 +11,8 @@ public class TaskService {
     @Inject
     TaskDAO taskDAO;
 
-    public void save(Task task) {
-        taskDAO.save(task);
+    public Task save(Task task) {
+        return taskDAO.save(task);
     }
 
     public Task get(UUID identifier) {

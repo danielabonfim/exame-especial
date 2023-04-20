@@ -29,12 +29,14 @@ public class TaskDAO {
     }
 
     @Transactional
-    public void save(Task task) {
+    public Task save(Task task) {
         if (task.getIdentifier() == null) {
             entityManager.persist(task);
         } else {
-            entityManager.merge(task);
+            return entityManager.merge(task);
         }
+
+        return task;
     }
 
     private Query getQueryForStatus(TaskStatus taskStatus) {
