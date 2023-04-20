@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private UUID identifier;
 
     @Size(min = 5, max = 20, message = "The task's title should have 5 characters at least and 20 at most")
     private String title;
@@ -72,5 +72,9 @@ public class Task {
 
     public boolean isDone() {
         return this.done;
+    }
+
+    public UUID getIdentifier() {
+        return this.identifier;
     }
 }

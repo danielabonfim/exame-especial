@@ -16,9 +16,6 @@ public class TaskResource {
 
     @GET
     public List<Task> list(@RestQuery String taskStatus) {
-        System.out.println("GET");
-        System.out.println(taskStatus);
-
         if (taskStatus != null) {
             return taskService.filterByStatus(TaskStatus.valueOf(taskStatus));
         }
